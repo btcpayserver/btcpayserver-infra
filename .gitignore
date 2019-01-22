@@ -1,0 +1,9 @@
+.env
+.gitconfig
+.ssh/
+.vim/
+.bash_history
+.bashrc
+.profile
+.viminfo
+snap/
