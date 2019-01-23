@@ -94,14 +94,17 @@ services:
       MM_USERNAME: "mmuser"
       MM_PASSWORD: "mmuser_password"
       MM_DBNAME: "mattermost"
-      VIRTUAL_PORT: "80"
+      VIRTUAL_PORT: "8000"
       VIRTUAL_HOST: ${MATTERMOST_HOST}
       VIRTUAL_NETWORK: "nginx-proxy"
       LETSENCRYPT_HOST: ${MATTERMOST_HOST}
       LETSENCRYPT_EMAIL: "<no value>"
       EDITION: "team"
-    expose:
-      - 80
+  mattermost_bridge:
+    restart: unless-stopped
+    image: 42wim/matterbridge:1.12.3
+    volumes:
+      - ./matterbridge.toml:/matterbridge.toml
         
 volumes:
     nginx_conf:
