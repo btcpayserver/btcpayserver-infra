@@ -4,7 +4,7 @@
 
 [mattermost.btcpay]
     Server="{MATTERMOST_HOST}"
-    Team="btcpay"
+    Team="btcpayserver"
     Login="{BOT_NICKNAME}"
     Password="{BOT_PASS}"
     PrefixMessagesWithNick=true
