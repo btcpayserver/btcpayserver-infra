@@ -32,7 +32,7 @@ This assume that `SLACK_HOST` and `MATTERMOST_HOST` are pointing to your server.
 Then you can run:
 
 ```bash
-./update.mattermost.sh
+./update-mattermost.sh
 docker-compose up -d
 ```
 
