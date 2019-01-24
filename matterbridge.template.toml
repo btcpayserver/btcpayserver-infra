@@ -3,7 +3,7 @@
     Nick="{BOT_NICKNAME}"
 
 [mattermost.btcpay]
-    Server="chat.btcpayserver.org"
+    Server="{MATTERMOST_HOST}"
     Team="btcpay"
     Login="{BOT_NICKNAME}"
     Password="{BOT_PASS}"
