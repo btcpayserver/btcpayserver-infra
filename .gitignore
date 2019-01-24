@@ -1,4 +1,5 @@
 .env
+mattermost.toml
 .gitconfig
 .ssh/
 .vim/
