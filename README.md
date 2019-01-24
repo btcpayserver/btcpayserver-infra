@@ -27,3 +27,8 @@ Where:
 * `GITTER_TOKEN` is the gitter token
 
 This assume that `SLACK_HOST` is pointing to your server.
+
+## Aditional settings
+
+We advise you to change `PluginSettings/EnableUploads` to true manually (`/var/lib/docker/volumes/root_mm-config/_data/config.json`).
+
