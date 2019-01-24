@@ -1,25 +1,25 @@
 [irc.freenode]
     Server="irc.freenode.net:6667"
-    Nick="btcpay_bot"
+    Nick="{BOT_NICKNAME}"
 
 [mattermost.btcpay]
-    Server="chat.nbitstack.com"
+    Server="chat.btcpayserver.org"
     Team="btcpay"
-    Login="btcpay_bot"
-    Password="BOT_PASS"
+    Login="{BOT_NICKNAME}"
+    Password="{BOT_PASS}"
     PrefixMessagesWithNick=true
 
 [slack.forkbitpay]
-	Token="TOKEEEN"
+	Token="{SLACK_TOKEN}"
 
 [telegram.btcpay]
-	Token="TOKEEEN"
+	Token="{TELEGRAM_TOKEN}"
 	
 [gitter.nbitcoin]
-	Token="TOKEEEN"
+	Token="{GITTER_TOKEN}"
 
 [general]
-RemoteNickFormat="[{PROTOCOL}/{BRIDGE}] <{NICK}> "
+RemoteNickFormat="[{PROTOCOL}/{BRIDGE}] <{BOT_NICKNAME}> "
 
 [[gateway]]
     name = "nbitcoin"
@@ -33,7 +33,7 @@ RemoteNickFormat="[{PROTOCOL}/{BRIDGE}] <{NICK}> "
     account ="slack.forkbitpay"
     channel = "nbitcoin"    
 	
-	[[gateway.inout]]
+    [[gateway.inout]]
     account ="mattermost.btcpay"
     channel = "nbitcoin"
 	
@@ -45,15 +45,15 @@ RemoteNickFormat="[{PROTOCOL}/{BRIDGE}] <{NICK}> "
     account ="slack.forkbitpay"
     channel = "general"    
 	
-	[[gateway.inout]]
+    [[gateway.inout]]
     account ="irc.freenode"
     channel = "#btcpayserver"
 	
-	[[gateway.inout]]
+    [[gateway.inout]]
     account ="mattermost.btcpay"
     channel = "general"
 	
-	[[gateway.inout]]
+    [[gateway.inout]]
     account ="telegram.btcpay"
     channel = "-1001266685806"
 
@@ -65,7 +65,7 @@ RemoteNickFormat="[{PROTOCOL}/{BRIDGE}] <{NICK}> "
     account ="slack.forkbitpay"
     channel = "help"    
 	
-	[[gateway.inout]]
+    [[gateway.inout]]
     account ="mattermost.btcpay"
     channel = "support"
 
@@ -77,7 +77,7 @@ RemoteNickFormat="[{PROTOCOL}/{BRIDGE}] <{NICK}> "
     account ="slack.forkbitpay"
     channel = "dev"    
 	
-	[[gateway.inout]]
+    [[gateway.inout]]
     account ="mattermost.btcpay"
     channel = "dev"
 
@@ -89,7 +89,7 @@ RemoteNickFormat="[{PROTOCOL}/{BRIDGE}] <{NICK}> "
     account ="slack.forkbitpay"
     channel = "lightning"    
 	
-	[[gateway.inout]]
+    [[gateway.inout]]
     account ="mattermost.btcpay"
     channel = "lightning"
 
@@ -101,7 +101,7 @@ RemoteNickFormat="[{PROTOCOL}/{BRIDGE}] <{NICK}> "
     account ="slack.forkbitpay"
     channel = "website"    
 	
-	[[gateway.inout]]
+    [[gateway.inout]]
     account ="mattermost.btcpay"
     channel = "website"
 	
@@ -113,7 +113,7 @@ RemoteNickFormat="[{PROTOCOL}/{BRIDGE}] <{NICK}> "
     account ="slack.forkbitpay"
     channel = "translations"    
 	
-	[[gateway.inout]]
+    [[gateway.inout]]
     account ="mattermost.btcpay"
     channel = "translations"
 
@@ -125,7 +125,7 @@ RemoteNickFormat="[{PROTOCOL}/{BRIDGE}] <{NICK}> "
     account ="slack.forkbitpay"
     channel = "dev-consensus"    
 	
-	[[gateway.inout]]
+    [[gateway.inout]]
     account ="mattermost.btcpay"
     channel = "dev-consensus"
 	
@@ -137,7 +137,7 @@ RemoteNickFormat="[{PROTOCOL}/{BRIDGE}] <{NICK}> "
     account ="slack.forkbitpay"
     channel = "btcpay-fund"    
 	
-	[[gateway.inout]]
+    [[gateway.inout]]
     account ="mattermost.btcpay"
     channel = "btcpay-fund"
 
@@ -149,6 +149,7 @@ RemoteNickFormat="[{PROTOCOL}/{BRIDGE}] <{NICK}> "
     account ="slack.forkbitpay"
     channel = "random"    
 	
-	[[gateway.inout]]
+    [[gateway.inout]]
     account ="mattermost.btcpay"
     channel = "off-topic"
+
