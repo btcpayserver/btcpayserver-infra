@@ -15,6 +15,7 @@ SLACK_TOKEN=xoxp-secret-token
 SLACK_HOST=slack.btcpayserver.org
 SLACK_URL=forkbitpay.slack.com
 MATTERMOST_HOST=chat.btcpayserver.org
+TELEGRAM_TOKEN=...
 ```
 Where: 
 * `SLACK_TOKEN` is your secret slack token
@@ -26,7 +27,14 @@ Where:
 * `TELEGRAM_TOKEN` is the telegram token
 * `GITTER_TOKEN` is the gitter token
 
-This assume that `SLACK_HOST` is pointing to your server.
+
+This assume that `SLACK_HOST` and `MATTERMOST_HOST` are pointing to your server.
+Then you can run:
+
+```bash
+./update.mattermost.sh
+docker-compose up -d
+```
 
 ## Aditional settings
 
