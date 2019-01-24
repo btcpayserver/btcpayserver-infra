@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-MATTERMOST_FILE="mattermost.toml"
+MATTERMOST_FILE="matterbridge.toml"
 cp matterbridge.template.toml "$MATTERMOST_FILE"
 export $(grep -v '^#' ".env" | xargs)
 

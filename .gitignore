@@ -1,5 +1,6 @@
 .env
 mattermost.toml
+matterbridge.toml
 .gitconfig
 .ssh/
 .vim/
