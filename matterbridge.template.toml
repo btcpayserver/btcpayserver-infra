@@ -51,7 +51,7 @@ RemoteNickFormat="[{PROTOCOL}/{BRIDGE}] <{NICK}> "
 	
     [[gateway.inout]]
     account ="mattermost.btcpay"
-    channel = "general"
+    channel = "town-square"
 	
     [[gateway.inout]]
     account ="telegram.btcpay"
