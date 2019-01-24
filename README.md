@@ -36,6 +36,12 @@ Then you can run:
 docker-compose up -d
 ```
 
+Our services expose:
+
+* Self hosted chat: [chat.btcpayserver.org](https://chat.btcpayserver.org)
+* Self hosted slack invite: [slack.btcpayserver.org](https://slack.btcpayserver.org)
+* Bot which bridge IRC, MatterMost, Slack and Telegram.
+
 ## Aditional settings
 
 We advise you to change `PluginSettings/EnableUploads` to true manually (`/var/lib/docker/volumes/root_mm-config/_data/config.json`).
