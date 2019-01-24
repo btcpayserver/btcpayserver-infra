@@ -21,5 +21,9 @@ Where:
 * `SLACK_HOST` is the slack invite domain name
 * `SLACK_URL` is the slack website of your community
 * `MATTERMOST_HOST` is the mattermost domain name
+* `BOT_NICKNAME` is the name of the bot on mattermost
+* `BOT_PASS` is the pass of the bot on mattermost
+* `TELEGRAM_TOKEN` is the telegram token
+* `GITTER_TOKEN` is the gitter token
 
 This assume that `SLACK_HOST` is pointing to your server.
