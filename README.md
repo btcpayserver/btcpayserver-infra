@@ -3,8 +3,9 @@ The docker compose running several services for the BTCPay Server community
 
 It contains the following services for the community:
 
-* Slack invite
-* Mattermost server
+* Slack invite.  ([slack.btcpayserver.org](https://slack.btcpayserver.org))
+* Mattermost server ([chat.btcpayserver.org](https://chat.btcpayserver.org))
+* Bot which bridge IRC, MatterMost, Slack and Telegram.
 
 ## How to use
 
@@ -35,12 +36,6 @@ Then you can run:
 ./update-mattermost.sh
 docker-compose up -d
 ```
-
-Our services expose:
-
-* Self hosted chat: [chat.btcpayserver.org](https://chat.btcpayserver.org)
-* Self hosted slack invite: [slack.btcpayserver.org](https://slack.btcpayserver.org)
-* Bot which bridge IRC, MatterMost, Slack and Telegram.
 
 ## Aditional settings
 
