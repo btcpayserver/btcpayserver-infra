@@ -19,7 +19,7 @@
 	Token="{GITTER_TOKEN}"
 
 [general]
-RemoteNickFormat="[{PROTOCOL}/{BRIDGE}] <{NICK}> "
+RemoteNickFormat="[{PROTOCOL} - {NICK}]"
 
 [[gateway]]
     name = "nbitcoin"
