@@ -53,9 +53,9 @@ RemoteNickFormat="[{PROTOCOL} - {NICK}]"
     account ="mattermost.btcpay"
     channel = "town-square"
 	
-    [[gateway.inout]]
-    account ="telegram.btcpay"
-    channel = "-1001266685806"
+
+
+
 
 [[gateway]]
     name = "support"
