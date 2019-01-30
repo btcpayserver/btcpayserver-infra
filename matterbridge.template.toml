@@ -19,7 +19,7 @@
 	Token="{GITTER_TOKEN}"
 
 [general]
-RemoteNickFormat="[{PROTOCOL}/{BRIDGE}] <{NICK}> "
+RemoteNickFormat="[{PROTOCOL} - {NICK}]"
 
 [[gateway]]
     name = "nbitcoin"
@@ -53,9 +53,9 @@ RemoteNickFormat="[{PROTOCOL}/{BRIDGE}] <{NICK}> "
     account ="mattermost.btcpay"
     channel = "town-square"
 	
-    [[gateway.inout]]
-    account ="telegram.btcpay"
-    channel = "-1001266685806"
+
+
+
 
 [[gateway]]
     name = "support"
