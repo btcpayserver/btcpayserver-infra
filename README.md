@@ -5,6 +5,7 @@ It contains the following services for the community:
 
 * Slack invite.  ([slack.btcpayserver.org](https://slack.btcpayserver.org))
 * Mattermost server ([chat.btcpayserver.org](https://chat.btcpayserver.org))
+* Btcpayserver Web Installer ([install.btcpayserver.org](https://install.btcpayserver.org))
 * Bot which bridge IRC, MatterMost, Slack and Telegram.
 
 ## How to use
@@ -27,9 +28,10 @@ Where:
 * `BOT_PASS` is the pass of the bot on mattermost
 * `TELEGRAM_TOKEN` is the telegram token
 * `GITTER_TOKEN` is the gitter token
+* `INSTALLER_HOST` is the btcpay web intaller domain name
 
 
-This assume that `SLACK_HOST` and `MATTERMOST_HOST` are pointing to your server.
+This assume that `SLACK_HOST`, `MATTERMOST_HOST`, and `INSTALLER_HOST` are pointing to your server.
 Then you can run:
 
 ```bash
