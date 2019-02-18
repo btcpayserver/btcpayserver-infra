@@ -102,7 +102,7 @@ services:
       EDITION: "team"
   mattermost_bridge:
     restart: unless-stopped
-    image: 42wim/matterbridge:1.12.3
+    image: 42wim/matterbridge:1.13.1
     volumes:
       - ./matterbridge.toml:/matterbridge.toml
         
