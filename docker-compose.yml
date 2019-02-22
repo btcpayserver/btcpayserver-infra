@@ -47,6 +47,8 @@ services:
     links:
       - nginx-gen
       - mattermost_app
+      - woocommerce_shop
+      - woocommerce_blog
   slack:
     image: nicolasdorier/slack-invite-automation:latest
     container_name: slack
@@ -61,7 +63,7 @@ services:
       VIRTUAL_PORT: "80"
       VIRTUAL_NETWORK: "nginx-proxy"
       LETSENCRYPT_HOST: ${SLACK_HOST}
-      LETSENCRYPT_EMAIL: "<no value>"
+      LETSENCRYPT_EMAIL: ${LETSENCRYPT_EMAIL:-<no value>}
     expose:
       - 80
   mattermost_db:
@@ -98,13 +100,64 @@ services:
       VIRTUAL_HOST: ${MATTERMOST_HOST}
       VIRTUAL_NETWORK: "nginx-proxy"
       LETSENCRYPT_HOST: ${MATTERMOST_HOST}
-      LETSENCRYPT_EMAIL: "<no value>"
+      LETSENCRYPT_EMAIL: ${LETSENCRYPT_EMAIL:-<no value>}
       EDITION: "team"
   mattermost_bridge:
     restart: unless-stopped
     image: 42wim/matterbridge:1.13.1
     volumes:
       - ./matterbridge.toml:/matterbridge.toml
+  woocommerce_shop:
+    image: btcpayserver/docker-woocommerce:3.0.6
+    environment:
+      WOOCOMMERCE_HOST: ${WOOCOMMERCE_SHOP_HOST}
+      WORDPRESS_DB_HOST: mariadb
+      WORDPRESS_DB_NAME: wordpress_shop
+      WORDPRESS_DB_USER: root
+      WORDPRESS_DB_PASSWORD: wordpressdb
+      LETSENCRYPT_HOST: ${WOOCOMMERCE_SHOP_HOST}
+      LETSENCRYPT_EMAIL: ${LETSENCRYPT_EMAIL:-<no value>}
+      VIRTUAL_HOST: ${WOOCOMMERCE_SHOP_HOST}
+    expose:
+      - 80
+    links:
+      - mariadb
+    volumes:
+      - "woocommerce_shop_html:/var/www/html"
+  woocommerce_blog:
+    image: btcpayserver/docker-woocommerce:3.0.6
+    environment:
+      WOOCOMMERCE_HOST: ${WOOCOMMERCE_BLOG_HOST}
+      WORDPRESS_DB_HOST: mariadb
+      WORDPRESS_DB_NAME: wordpress_blog
+      WORDPRESS_DB_USER: root
+      WORDPRESS_DB_PASSWORD: wordpressdb
+      LETSENCRYPT_HOST: ${WOOCOMMERCE_BLOG_HOST}
+      LETSENCRYPT_EMAIL: ${LETSENCRYPT_EMAIL:-<no value>}
+      VIRTUAL_HOST: ${WOOCOMMERCE_BLOG_HOST}
+    expose:
+      - 80
+    links:
+      - mariadb
+    volumes:
+      - "woocommerce_blog_html:/var/www/html"
+
+  mariadb:
+    image: mariadb:10.4
+    environment:
+      MYSQL_ROOT_PASSWORD: wordpressdb
+      MYSQL_USER: wordpress
+      MYSQL_PASSWORD: wordpress
+    expose:
+      - "3306"
+    volumes:
+      - "mariadb_datadir:/var/lib/mysql"
+    entrypoint:
+      sh -c "
+        echo 'CREATE DATABASE IF NOT EXISTS wordpress_shop; CREATE DATABASE IF NOT EXISTS wordpress_blog;' > /docker-entrypoint-initdb.d/init.sql;
+        /usr/local/bin/docker-entrypoint.sh --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
+      "
+
         
 volumes:
     nginx_conf:
@@ -116,3 +169,6 @@ volumes:
     mm-data:
     mm-logs:
     mm-plugins:
+    woocommerce_shop_html:
+    woocommerce_blog_html:
+    mariadb_datadir:
