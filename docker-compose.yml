@@ -119,7 +119,7 @@ services:
     expose:
       - "80"
     links:
-      - mariadb_shop
+      - mariadb
     volumes:
       - "woocommerce_shop_html:/var/www/html"
   woocommerce_blog:
@@ -136,7 +136,7 @@ services:
     expose:
       - "80"
     links:
-      - mariadb_blog
+      - mariadb
     volumes:
       - "woocommerce_blog_html:/var/www/html"
 
