@@ -109,7 +109,8 @@ services:
     image: btcpayserver/docker-woocommerce:3.0.6
     environment:
       WOOCOMMERCE_HOST: ${WOOCOMMERCE_SHOP_HOST}
-      WORDPRESS_DB_HOST: mariadb_shop
+      WORDPRESS_DB_HOST: mariadb
+      WORDPRESS_DB_NAME: wordpress_shop
       WORDPRESS_DB_USER: wordpress
       WORDPRESS_DB_PASSWORD: wordpress
       LETSENCRYPT_HOST: ${WOOCOMMERCE_SHOP_HOST}
@@ -125,7 +126,8 @@ services:
     image: btcpayserver/docker-woocommerce:3.0.6
     environment:
       WOOCOMMERCE_HOST: ${WOOCOMMERCE_BLOG_HOST}
-      WORDPRESS_DB_HOST: mariadb_blog
+      WORDPRESS_DB_HOST: mariadb
+      WORDPRESS_DB_NAME: wordpress_blog
       WORDPRESS_DB_USER: wordpress
       WORDPRESS_DB_PASSWORD: wordpress
       LETSENCRYPT_HOST: ${WOOCOMMERCE_BLOG_HOST}
@@ -138,28 +140,21 @@ services:
     volumes:
       - "woocommerce_blog_html:/var/www/html"
 
-  mariadb_shop:
-    image: mariadb:10.3
+  mariadb:
+    image: mariadb:10.4
     environment:
       MYSQL_ROOT_PASSWORD: wordpressdb
-      MYSQL_DATABASE: wordpress
       MYSQL_USER: wordpress
       MYSQL_PASSWORD: wordpress
     expose:
       - "3306"
     volumes:
-      - "mariadb_shop_datadir:/var/lib/mysql"
-  mariadb_blog:
-    image: mariadb:10.3
-    environment:
-      MYSQL_ROOT_PASSWORD: wordpressdb
-      MYSQL_DATABASE: wordpress
-      MYSQL_USER: wordpress
-      MYSQL_PASSWORD: wordpress
-    expose:
-      - "3306"
-    volumes:
-      - "mariadb_blog_datadir:/var/lib/mysql"
+      - "mariadb_datadir:/var/lib/mysql"
+    entrypoint:
+      sh -c "
+        echo 'CREATE DATABASE IF NOT EXISTS wordpress_shop; CREATE DATABASE IF NOT EXISTS wordpress_blog;' > /docker-entrypoint-initdb.d/init.sql;
+        /usr/local/bin/docker-entrypoint.sh --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
+      "
 
         
 volumes:
@@ -174,5 +169,4 @@ volumes:
     mm-plugins:
     woocommerce_shop_html:
     woocommerce_blog_html:
-    mariadb_shop_datadir:
-    mariadb_blog_datadir:
+    mariadb_datadir:
