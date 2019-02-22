@@ -16,8 +16,8 @@ SLACK_TOKEN=xoxp-secret-token
 SLACK_HOST=slack.btcpayserver.org
 SLACK_URL=forkbitpay.slack.com
 MATTERMOST_HOST=chat.btcpayserver.org
-WOOCOMMERCE_STORE_HOST=store.btcpayserver.org
-WOOCOMMERCE_SHOP_HOST=blog.btcpayserver.org
+WOOCOMMERCE_SHOP_HOST=store.btcpayserver.org
+WOOCOMMERCE_BLOG_HOST=blog.btcpayserver.org
 TELEGRAM_TOKEN=...
 ```
 Where: 
