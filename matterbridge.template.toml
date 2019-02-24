@@ -128,6 +128,18 @@ RemoteNickFormat="[{PROTOCOL} - {NICK}]"
     [[gateway.inout]]
     account ="mattermost.btcpay"
     channel = "dev-consensus"
+    
+[[gateway]]
+    name = "internet-of-shit"
+    enable=true
+
+    [[gateway.inout]]
+    account ="slack.forkbitpay"
+    channel = "internetofshit"    
+	
+    [[gateway.inout]]
+    account ="mattermost.btcpay"
+    channel = "internet-of-shit"
 	
 [[gateway]]
     name = "btcpay-fund"
