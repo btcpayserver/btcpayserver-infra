@@ -139,7 +139,7 @@ RemoteNickFormat="[{PROTOCOL} - {NICK}]"
 	
     [[gateway.inout]]
     account ="mattermost.btcpay"
-    channel = "internet-of-shit"
+    channel = "Raspberry PI"
 	
 [[gateway]]
     name = "btcpay-fund"
