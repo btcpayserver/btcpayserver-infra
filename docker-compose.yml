@@ -51,6 +51,7 @@ services:
       - woocommerce_blog
   slack:
     image: nicolasdorier/slack-invite-automation:latest
+    restart: unless-stopped
     container_name: slack
     command: "node ./bin/www"
     environment:
@@ -108,6 +109,7 @@ services:
     volumes:
       - ./matterbridge.toml:/matterbridge.toml
   woocommerce_shop:
+    restart: unless-stopped
     image: btcpayserver/docker-woocommerce:3.0.6
     environment:
       WOOCOMMERCE_HOST: ${WOOCOMMERCE_SHOP_HOST}
@@ -125,6 +127,7 @@ services:
     volumes:
       - "woocommerce_shop_html:/var/www/html"
   woocommerce_blog:
+    restart: unless-stopped
     image: btcpayserver/docker-woocommerce:3.0.6
     environment:
       WOOCOMMERCE_HOST: ${WOOCOMMERCE_BLOG_HOST}
@@ -143,6 +146,7 @@ services:
       - "woocommerce_blog_html:/var/www/html"
 
   mariadb:
+    restart: unless-stopped
     image: mariadb:10.4
     environment:
       MYSQL_ROOT_PASSWORD: wordpressdb
