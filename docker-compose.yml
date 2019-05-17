@@ -105,7 +105,7 @@ services:
       EDITION: "team"
   mattermost_bridge:
     restart: unless-stopped
-    image: 42wim/matterbridge:1.13.1
+    image: 42wim/matterbridge:1.14.4 
     volumes:
       - ./matterbridge.toml:/matterbridge.toml
   woocommerce_shop:
