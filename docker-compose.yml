@@ -162,7 +162,16 @@ services:
       - mariadb
     volumes:
       - "woocommerce_directory_html:/var/www/html"
-
+  sftp:
+    image: atmoz/sftp
+    ports:
+      - "2222:22"
+    links:
+      - woocommerce_directory
+    volumes:
+      - "./id_rsa.pub:/home/www-data/.ssh/keys/id_rsa.pub:ro"
+      - "./users.conf:/etc/sftp/users.conf:ro"
+      - "woocommerce_directory_html:/home/www-data/www"
   mariadb:
     restart: unless-stopped
     image: mariadb:10.4
