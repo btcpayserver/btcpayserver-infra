@@ -140,18 +140,6 @@ RemoteNickFormat="[{PROTOCOL} - {NICK}]"
     [[gateway.inout]]
     account ="mattermost.btcpay"
     channel = "raspberry-pi"
-	
-[[gateway]]
-    name = "btcpay-fund"
-    enable=true
-
-    [[gateway.inout]]
-    account ="slack.forkbitpay"
-    channel = "btcpay-fund"    
-	
-    [[gateway.inout]]
-    account ="mattermost.btcpay"
-    channel = "btcpay-fund"
 
 [[gateway]]
     name = "offtopic"
