@@ -185,6 +185,15 @@ services:
       - "mariadb_datadir:/var/lib/mysql"
     entrypoint:
       sh -c "echo 'CREATE DATABASE IF NOT EXISTS wordpress_shop; CREATE DATABASE IF NOT EXISTS wordpress_blog; CREATE DATABASE IF NOT EXISTS wordpress_directory;' > /docker-entrypoint-initdb.d/init.sql; /usr/local/bin/docker-entrypoint.sh --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci "
+  configurator:
+    restart: unless-stopped
+    image: btcpayserver/btcpayserver-configurator:0.0.17
+    environment:
+      LETSENCRYPT_HOST: ${CONFIGURATOR_HOST}
+      LETSENCRYPT_EMAIL: ${LETSENCRYPT_EMAIL:-<no value>}
+      VIRTUAL_HOST: ${CONFIGURATOR_HOST}
+    expose:
+      - "80"
 volumes:
     nginx_conf:
     nginx_vhost:
