@@ -68,7 +68,7 @@ services:
     expose:
       - 80
   mattermost_db:
-    image: mattermost/mattermost-prod-db:5.18.1
+    image: mattermost/mattermost-prod-db:5.25.0
     volumes:
       - mm-dbdata:/var/lib/postgresql/data
       - /etc/localtime:/etc/localtime:ro
@@ -83,7 +83,7 @@ services:
         - mattermost_app
   mattermost_app:
     restart: unless-stopped
-    image: mattermost/mattermost-prod-app:5.18.1
+    image: mattermost/mattermost-prod-app:5.25.0
     volumes:
       - mm-config:/mattermost/config:rw
       - mm-data:/mattermost/data:rw
@@ -144,34 +144,16 @@ services:
       - mariadb
     volumes:
       - "woocommerce_blog_html:/var/www/html"
-  woocommerce_directory:
-    restart: unless-stopped
-    image: btcpayserver/docker-woocommerce:3.0.6
-    environment:
-      WOOCOMMERCE_HOST: ${WOOCOMMERCE_DIRECTORY_HOST}
-      WORDPRESS_DB_HOST: mariadb
-      WORDPRESS_DB_NAME: wordpress_directory
-      WORDPRESS_DB_USER: root
-      WORDPRESS_DB_PASSWORD: wordpressdb
-      LETSENCRYPT_HOST: ${WOOCOMMERCE_DIRECTORY_HOST}
-      LETSENCRYPT_EMAIL: ${LETSENCRYPT_EMAIL:-<no value>}
-      VIRTUAL_HOST: ${WOOCOMMERCE_DIRECTORY_HOST}
-    expose:
-      - 80
-    links:
-      - mariadb
-    volumes:
-      - "woocommerce_directory_html:/var/www/html"
   sftp:
     image: atmoz/sftp
     ports:
       - "2222:22"
     links:
-      - woocommerce_directory
+      - woocommerce_blog
     volumes:
       - "./id_rsa.pub:/home/www-data/.ssh/keys/id_rsa.pub:ro"
       - "./users.conf:/etc/sftp/users.conf:ro"
-      - "woocommerce_directory_html:/home/www-data/www"
+      - "woocommerce_blog_html:/home/www-data/www"
   mariadb:
     restart: unless-stopped
     image: mariadb:10.4
@@ -184,10 +166,10 @@ services:
     volumes:
       - "mariadb_datadir:/var/lib/mysql"
     entrypoint:
-      sh -c "echo 'CREATE DATABASE IF NOT EXISTS wordpress_shop; CREATE DATABASE IF NOT EXISTS wordpress_blog; CREATE DATABASE IF NOT EXISTS wordpress_directory;' > /docker-entrypoint-initdb.d/init.sql; /usr/local/bin/docker-entrypoint.sh --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci "
+      sh -c "echo 'CREATE DATABASE IF NOT EXISTS wordpress_shop; CREATE DATABASE IF NOT EXISTS wordpress_blog;' > /docker-entrypoint-initdb.d/init.sql; /usr/local/bin/docker-entrypoint.sh --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci "
   configurator:
     restart: unless-stopped
-    image: btcpayserver/btcpayserver-configurator:0.0.21
+    image: btcpayserver/btcpayserver-configurator:0.0.22
     environment:
       LETSENCRYPT_HOST: ${CONFIGURATOR_HOST}
       LETSENCRYPT_EMAIL: ${LETSENCRYPT_EMAIL:-<no value>}
@@ -205,6 +187,5 @@ volumes:
     mm-logs:
     mm-plugins:
     woocommerce_shop_html:
-    woocommerce_directory_html:
     woocommerce_blog_html:
     mariadb_datadir:
