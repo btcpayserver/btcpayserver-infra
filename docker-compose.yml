@@ -144,7 +144,6 @@ services:
       - mariadb
     volumes:
       - "woocommerce_blog_html:/var/www/html"
-      version: '3'
   sftp:
     image: atmoz/sftp
     ports:
