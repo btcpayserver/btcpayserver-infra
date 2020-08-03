@@ -186,7 +186,7 @@ services:
       - TRUSTED_PROXIES=**
       - DB_CONNECTION=pgsql
       - DB_HOST=postgres
-      - DB_PORT=5433
+      - DB_PORT=5432
       # Need to manually create fireflyiii database since fireflyiii doesn't create it automatically
       - DB_DATABASE=fireflyiii
       - DB_USERNAME=postgres
@@ -206,8 +206,6 @@ services:
   postgres:
     restart: unless-stopped
     image:  postgres:9.6.5
-    ports: 
-      - "5433:5432"
     volumes:
       - "postgres_datadir:/var/lib/postgresql/data"
 
