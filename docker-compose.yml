@@ -176,6 +176,42 @@ services:
       VIRTUAL_HOST: ${CONFIGURATOR_HOST}
     expose:
       - "80"
+
+  fireflyiii:
+    image: jc5x/firefly-iii:latest
+    environment:
+      - APP_ENV=local
+      - APP_KEY=MustBe32DropDbAndChangeItIfUWant
+      - APP_URL=http://${FIREFLY_HOST}
+      - TRUSTED_PROXIES=**
+      - DB_CONNECTION=pgsql
+      - DB_HOST=postgres
+      - DB_PORT=5433
+      # Need to manually create fireflyiii database since fireflyiii doesn't create it automatically
+      - DB_DATABASE=fireflyiii
+      - DB_USERNAME=postgres
+      - DB_PASSWORD=
+      - VIRTUAL_HOST_NAME=fireflyiii
+      - VIRTUAL_HOST=${FIREFLY_HOST}
+      - VIRTUAL_PORT=8080
+      - LETSENCRYPT_HOST=${FIREFLY_HOST}
+    expose:
+      - 8080
+    volumes:
+      - firefly_iii_export:/var/www/firefly-iii/storage/export
+      - firefly_iii_upload:/var/www/firefly-iii/storage/upload
+    depends_on:
+      - postgres
+
+  postgres:
+    restart: unless-stopped
+    image:  postgres:9.6.5
+    ports: 
+      - "5433:5432"
+    volumes:
+      - "postgres_datadir:/var/lib/postgresql/data"
+
+
 volumes:
     nginx_conf:
     nginx_vhost:
@@ -189,3 +225,6 @@ volumes:
     woocommerce_shop_html:
     woocommerce_blog_html:
     mariadb_datadir:
+    firefly_iii_export:
+    firefly_iii_upload:
+    postgres_datadir:    
