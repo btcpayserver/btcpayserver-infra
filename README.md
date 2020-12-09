@@ -22,6 +22,7 @@ CONFIGURATOR_HOST=install.btcpayserver.org
 WOOCOMMERCE_SHOP_HOST=store.btcpayserver.org
 WOOCOMMERCE_BLOG_HOST=blog.btcpayserver.org
 TELEGRAM_TOKEN=...
+FIREFLY_HOST=firefly.btcpayserver.org
 ```
 Where: 
 * `SLACK_TOKEN` is your secret slack token
@@ -35,6 +36,7 @@ Where:
 * `WOOCOMMERCE_BLOG_HOST` is the blog domain name
 * `WOOCOMMERCE_SHOP_HOST` is the store domain name
 * `CONFIGURATOR_HOST` is the configurator domain name
+* `FIREFLY_HOST` is the our firefly domain name
 
 
 This assume that `SLACK_HOST`, `MATTERMOST_HOST`, `WOOCOMMERCE_BLOG_HOST`, `WOOCOMMERCE_SHOP_HOST` and `CONFIGURATOR_HOST` are pointing to your server.
