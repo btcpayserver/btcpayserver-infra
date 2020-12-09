@@ -182,7 +182,7 @@ services:
     environment:
       - APP_ENV=local
       - APP_KEY=MustBe32DropDbAndChangeItIfUWant
-      - APP_URL=http://${FIREFLY_HOST}
+      - APP_URL=https://${FIREFLY_HOST}
       - TRUSTED_PROXIES=**
       - DB_CONNECTION=pgsql
       - DB_HOST=postgres
