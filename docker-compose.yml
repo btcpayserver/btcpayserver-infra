@@ -68,7 +68,7 @@ services:
     expose:
       - 80
   mattermost_db:
-    image: mattermost/mattermost-prod-db:5.31.0
+    image: mattermost/mattermost-prod-db:v5.31.4
     volumes:
       - mm-dbdata:/var/lib/postgresql/data
       - /etc/localtime:/etc/localtime:ro
@@ -83,7 +83,7 @@ services:
         - mattermost_app
   mattermost_app:
     restart: unless-stopped
-    image: mattermost/mattermost-prod-app:5.31.0
+    image: mattermost/mattermost-prod-app:v5.31.4
     volumes:
       - mm-config:/mattermost/config:rw
       - mm-data:/mattermost/data:rw
