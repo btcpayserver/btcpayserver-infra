@@ -68,10 +68,13 @@ services:
     expose:
       - 80
   mattermost_db:
-    image: mattermost/mattermost-prod-db:v5.31.4
+    image: mattermost/mattermost-prod-db:v5.31.6
+    entrypoint: ./migrate-docker-entrypoint.sh
+    command: postgres
     volumes:
       - mm-dbdata:/var/lib/postgresql/data
       - /etc/localtime:/etc/localtime:ro
+      - "./postgres/migrate-docker-entrypoint.sh:/migrate-docker-entrypoint.sh:ro"
     environment:
       - POSTGRES_USER=mmuser
       - POSTGRES_PASSWORD=mmuser_password
@@ -83,7 +86,7 @@ services:
         - mattermost_app
   mattermost_app:
     restart: unless-stopped
-    image: mattermost/mattermost-prod-app:v5.31.4
+    image: mattermost/mattermost-prod-app:v5.31.6
     volumes:
       - mm-config:/mattermost/config:rw
       - mm-data:/mattermost/data:rw
