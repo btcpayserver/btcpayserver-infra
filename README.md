@@ -6,7 +6,6 @@ It contains the following services for the community:
 * Slack invite.  ([slack.btcpayserver.org](https://slack.btcpayserver.org))
 * Mattermost server ([chat.btcpayserver.org](https://chat.btcpayserver.org))
 * Bot which bridge IRC, MatterMost, Slack and Telegram.
-* Wordpress Blog and Merch store.  ([blog.btcpayserver.org](https://blog.btcpayserver.org))  ([shop.btcpayserver.org](https://shop.btcpayserver.org))
 * BTCPay Server Web Installer/Configurator.  ([install.btcpayserver.org](https://install.btcpayserver.org))
 
 ## How to use
@@ -19,8 +18,6 @@ SLACK_HOST=slack.btcpayserver.org
 SLACK_URL=forkbitpay.slack.com
 MATTERMOST_HOST=chat.btcpayserver.org
 CONFIGURATOR_HOST=install.btcpayserver.org
-WOOCOMMERCE_SHOP_HOST=store.btcpayserver.org
-WOOCOMMERCE_BLOG_HOST=blog.btcpayserver.org
 TELEGRAM_TOKEN=...
 FIREFLY_HOST=firefly.btcpayserver.org
 ```
@@ -33,13 +30,11 @@ Where:
 * `BOT_PASS` is the pass of the bot on mattermost
 * `TELEGRAM_TOKEN` is the telegram token
 * `GITTER_TOKEN` is the gitter token
-* `WOOCOMMERCE_BLOG_HOST` is the blog domain name
-* `WOOCOMMERCE_SHOP_HOST` is the store domain name
 * `CONFIGURATOR_HOST` is the configurator domain name
 * `FIREFLY_HOST` is the our firefly domain name
 
 
-This assume that `SLACK_HOST`, `MATTERMOST_HOST`, `WOOCOMMERCE_BLOG_HOST`, `WOOCOMMERCE_SHOP_HOST` and `CONFIGURATOR_HOST` are pointing to your server.
+This assume that `SLACK_HOST`, `MATTERMOST_HOST`, and `CONFIGURATOR_HOST` are pointing to your server.
 Then you can run:
 
 ```bash

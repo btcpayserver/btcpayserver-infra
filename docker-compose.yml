@@ -47,8 +47,6 @@ services:
     links:
       - nginx-gen
       - mattermost_app
-      - woocommerce_shop
-      - woocommerce_blog
   slack:
     image: nicolasdorier/slack-invite-automation:latest
     restart: unless-stopped
@@ -108,65 +106,6 @@ services:
     image: 42wim/matterbridge:1.18.3
     volumes:
       - ./matterbridge.toml:/matterbridge.toml
-  woocommerce_shop:
-    restart: unless-stopped
-    image: btcpayserver/docker-woocommerce:3.0.6
-    environment:
-      WOOCOMMERCE_HOST: ${WOOCOMMERCE_SHOP_HOST}
-      WORDPRESS_DB_HOST: mariadb
-      WORDPRESS_DB_NAME: wordpress_shop
-      WORDPRESS_DB_USER: root
-      WORDPRESS_DB_PASSWORD: wordpressdb
-      LETSENCRYPT_HOST: ${WOOCOMMERCE_SHOP_HOST}
-      LETSENCRYPT_EMAIL: ${LETSENCRYPT_EMAIL:-<no value>}
-      VIRTUAL_HOST: ${WOOCOMMERCE_SHOP_HOST}
-    expose:
-      - 80
-    links:
-      - mariadb
-    volumes:
-      - "woocommerce_shop_html:/var/www/html"
-  woocommerce_blog:
-    restart: unless-stopped
-    image: btcpayserver/docker-woocommerce:3.0.6
-    environment:
-      WOOCOMMERCE_HOST: ${WOOCOMMERCE_BLOG_HOST}
-      WORDPRESS_DB_HOST: mariadb
-      WORDPRESS_DB_NAME: wordpress_blog
-      WORDPRESS_DB_USER: root
-      WORDPRESS_DB_PASSWORD: wordpressdb
-      LETSENCRYPT_HOST: ${WOOCOMMERCE_BLOG_HOST}
-      LETSENCRYPT_EMAIL: ${LETSENCRYPT_EMAIL:-<no value>}
-      VIRTUAL_HOST: ${WOOCOMMERCE_BLOG_HOST}
-    expose:
-      - 80
-    links:
-      - mariadb
-    volumes:
-      - "woocommerce_blog_html:/var/www/html"
-  sftp:
-    image: atmoz/sftp
-    ports:
-      - "2222:22"
-    links:
-      - woocommerce_blog
-    volumes:
-      - "./id_rsa.pub:/home/www-data/.ssh/keys/id_rsa.pub:ro"
-      - "./users.conf:/etc/sftp/users.conf:ro"
-      - "woocommerce_blog_html:/home/www-data/www"
-  mariadb:
-    restart: unless-stopped
-    image: mariadb:10.4
-    environment:
-      MYSQL_ROOT_PASSWORD: wordpressdb
-      MYSQL_USER: wordpress
-      MYSQL_PASSWORD: wordpress
-    expose:
-      - "3306"
-    volumes:
-      - "mariadb_datadir:/var/lib/mysql"
-    entrypoint:
-      sh -c "echo 'CREATE DATABASE IF NOT EXISTS wordpress_shop; CREATE DATABASE IF NOT EXISTS wordpress_blog;' > /docker-entrypoint-initdb.d/init.sql; /usr/local/bin/docker-entrypoint.sh --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci "
   configurator:
     restart: unless-stopped
     image: btcpayserver/btcpayserver-configurator:0.0.22
@@ -220,9 +159,6 @@ volumes:
     mm-data:
     mm-logs:
     mm-plugins:
-    woocommerce_shop_html:
-    woocommerce_blog_html:
-    mariadb_datadir:
     firefly_iii_export:
     firefly_iii_upload:
     postgres_datadir:    
