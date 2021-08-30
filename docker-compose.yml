@@ -117,7 +117,7 @@ services:
       - "80"
 
   fireflyiii:
-    image: jc5x/firefly-iii:latest
+    image: fireflyiii/core:latest
     environment:
       - APP_ENV=local
       - APP_KEY=MustBe32DropDbAndChangeItIfUWant
