@@ -82,7 +82,7 @@ services:
         - mattermost_app
   mattermost_app:
     restart: unless-stopped
-    image: mattermost/mattermost-prod-app:v5.31.4
+    image: mattermost/mattermost-team-edition:6.0.1
     volumes:
       - mm-config:/mattermost/config:rw
       - mm-data:/mattermost/data:rw
@@ -91,17 +91,18 @@ services:
       - /etc/localtime:/etc/localtime:ro
     environment:
       # use service's hostname
-      DB_HOST: "mattermost_db"
-      DB_PORT_NUMBER: 5432
-      MM_USERNAME: "mmuser"
-      MM_PASSWORD: "mmuser_password"
-      MM_DBNAME: "mattermost"
+      MM_SQLSETTINGS_DRIVERNAME: postgres
+      MM_SQLSETTINGS_DATASOURCE: postgres://mmuser:mmuser_password@mattermost_db:5432/mattermost?sslmode=disable&connect_timeout=10
+      MM_SERVICESETTINGS_SITEURL: https://${MATTERMOST_HOST}
+      DOMAIN: ${MATTERMOST_HOST}
       VIRTUAL_PORT: "8000"
       VIRTUAL_HOST: ${MATTERMOST_HOST}
       VIRTUAL_NETWORK: "nginx-proxy"
       LETSENCRYPT_HOST: ${MATTERMOST_HOST}
       LETSENCRYPT_EMAIL: ${LETSENCRYPT_EMAIL:-<no value>}
       EDITION: "team"
+    depends_on:
+      - mattermost_db
   mattermost_bridge:
     restart: unless-stopped
     image: 42wim/matterbridge:1.18.3
