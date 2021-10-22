@@ -78,8 +78,6 @@ services:
     restart: unless-stopped
     expose:
       - 5432
-    links:
-        - mattermost_app
   mattermost_app:
     restart: unless-stopped
     image: mattermost/mattermost-team-edition:6.0.1
