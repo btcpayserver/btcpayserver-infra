@@ -93,7 +93,7 @@ services:
       MM_SQLSETTINGS_DATASOURCE: postgres://mmuser:mmuser_password@mattermost_db:5432/mattermost?sslmode=disable&connect_timeout=10
       MM_SERVICESETTINGS_SITEURL: https://${MATTERMOST_HOST}
       DOMAIN: ${MATTERMOST_HOST}
-      VIRTUAL_PORT: "8000"
+      VIRTUAL_PORT: "8065"
       VIRTUAL_HOST: ${MATTERMOST_HOST}
       VIRTUAL_NETWORK: "nginx-proxy"
       LETSENCRYPT_HOST: ${MATTERMOST_HOST}
