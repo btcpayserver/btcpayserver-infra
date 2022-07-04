@@ -115,7 +115,7 @@ RemoteNickFormat="[{PROTOCOL} - {NICK}]"
 	
     [[gateway.inout]]
     account ="mattermost.btcpay"
-    channel = "translations"
+    channel = "translation-activity"
     
 [[gateway]]
     name = "internet-of-shit"
