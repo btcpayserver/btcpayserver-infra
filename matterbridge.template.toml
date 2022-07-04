@@ -104,19 +104,7 @@ RemoteNickFormat="[{PROTOCOL} - {NICK}]"
     [[gateway.inout]]
     account ="mattermost.btcpay"
     channel = "website"
-	
-[[gateway]]
-    name = "translations"
-    enable=true
 
-    [[gateway.inout]]
-    account ="slack.forkbitpay"
-    channel = "translations"    
-	
-    [[gateway.inout]]
-    account ="mattermost.btcpay"
-    channel = "translation-activity"
-    
 [[gateway]]
     name = "internet-of-shit"
     enable=true
