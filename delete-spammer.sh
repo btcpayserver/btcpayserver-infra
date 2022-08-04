@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-username="$1"
+username="$(echo "$1" | xarg)"
 echo "Trying to delete $username"
 psql="docker exec -ti root_mattermost_db_1 psql -U mmuser -d mattermost"
 userid=$($psql -qtAX -c "SELECT id FROM users WHERE username='$username'")
