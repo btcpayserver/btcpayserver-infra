@@ -3,7 +3,7 @@ version: "3"
 services:
   nginx:
     restart: unless-stopped
-    image: nginx:stable
+    image: nginx:1.16.0
     container_name: nginx
     ports:
       - "80:80"
@@ -16,7 +16,7 @@ services:
 
   nginx-gen:
     restart: unless-stopped
-    image: btcpayserver/docker-gen:0.7.4
+    image: btcpayserver/docker-gen:0.7.8
     container_name: nginx-gen
     volumes:
       - "/var/run/docker.sock:/tmp/docker.sock:ro"
