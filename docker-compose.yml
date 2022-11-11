@@ -151,6 +151,18 @@ services:
     volumes:
       - "postgres_datadir:/var/lib/postgresql/data"
 
+  plugin-builder:
+    restart: unless-stopped
+    image: btcpayserver/btcpayserver-plugin-builder:v1.0.0
+    environment:
+      PB_POSTGRES: Application Name=plugin-builder;User ID=postgres;Host=postgres;Port=5432;Database=plugin-builder
+      PB_STORAGE_CONNECTION_STRING: ${PB_STORAGE_CONNECTION_STRING}
+      VIRTUAL_HOST_NAME: pluginbuilder
+      VIRTUAL_HOST: ${PB_HOST}
+      VIRTUAL_PORT: 5000
+      LETSENCRYPT_HOST: ${PB_HOST}
+    volumes:
+      - "pluginbuilder_datadir:/datadir"
 
 volumes:
     nginx_conf:
@@ -164,4 +176,5 @@ volumes:
     mm-plugins:
     firefly_iii_export:
     firefly_iii_upload:
-    postgres_datadir:    
+    postgres_datadir: 
+    pluginbuilder_datadir:   
