@@ -135,6 +135,8 @@ services:
       VIRTUAL_HOST: ${PB_HOST}
       VIRTUAL_PORT: 80
       LETSENCRYPT_HOST: ${PB_HOST}
+    expose:
+      - "80"
     volumes:
       - "pluginbuilder_datadir:/datadir"
       - /var/run/docker.sock:/var/run/docker.sock
