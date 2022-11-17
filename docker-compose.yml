@@ -117,7 +117,7 @@ services:
       - "80"
 
   fireflyiii:
-    image: jc5x/firefly-iii:latest
+    image: fireflyiii/core:version-5.7.15
     environment:
       - APP_ENV=local
       - APP_KEY=MustBe32DropDbAndChangeItIfUWant
@@ -137,8 +137,8 @@ services:
     expose:
       - 8080
     volumes:
-      - firefly_iii_export:/var/www/firefly-iii/storage/export
-      - firefly_iii_upload:/var/www/firefly-iii/storage/upload
+      - firefly_iii_export:/var/www/html/storage/export
+      - firefly_iii_upload:/var/www/html/storage/upload
     depends_on:
       - postgres
 
