@@ -80,7 +80,7 @@ services:
       - 5432
   mattermost_app:
     restart: unless-stopped
-    image: mattermost/mattermost-team-edition:6.3
+    image: mattermost/mattermost-team-edition:release-7.1
     volumes:
       - mm-config:/mattermost/config:rw
       - mm-data:/mattermost/data:rw
