@@ -84,7 +84,7 @@ services:
       - mattermost_db
   mattermost_bridge:
     restart: unless-stopped
-    image: 42wim/matterbridge:1.23.2
+    image: 42wim/matterbridge:1.26.0
     volumes:
       - ./matterbridge.toml:/matterbridge.toml
   configurator:
