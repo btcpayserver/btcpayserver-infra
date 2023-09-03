@@ -28,7 +28,6 @@ services:
     entrypoint: /usr/local/bin/docker-gen -notify-sighup nginx -watch -wait 5s:30s /etc/docker-gen/templates/nginx.tmpl /etc/nginx/conf.d/default.conf
     links:
       - nginx
-      - slack
 
   letsencrypt-nginx-proxy-companion:
     restart: unless-stopped
@@ -47,24 +46,6 @@ services:
     links:
       - nginx-gen
       - mattermost_app
-  slack:
-    image: nicolasdorier/slack-invite-automation:latest
-    restart: unless-stopped
-    container_name: slack
-    command: "node ./bin/www"
-    environment:
-      SLACK_URL: ${SLACK_URL:-forkbitpay.slack.com}
-      PORT: 80
-      COMMUNITY_NAME: "BTCPay Server"
-      SLACK_TOKEN: ${SLACK_TOKEN}
-      VIRTUAL_HOST: ${SLACK_HOST}
-      SSL_POLICY: "Mozilla-Modern"
-      VIRTUAL_PORT: "80"
-      VIRTUAL_NETWORK: "nginx-proxy"
-      LETSENCRYPT_HOST: ${SLACK_HOST}
-      LETSENCRYPT_EMAIL: ${LETSENCRYPT_EMAIL:-<no value>}
-    expose:
-      - 80
   mattermost_db:
     image: btcpayserver/postgres:13.4-1
     volumes:

@@ -14,8 +14,6 @@ Create a `.env` file with the following content:
 
 ```bash
 SLACK_TOKEN=xoxp-secret-token
-SLACK_HOST=slack.btcpayserver.org
-SLACK_URL=forkbitpay.slack.com
 MATTERMOST_HOST=chat.btcpayserver.org
 CONFIGURATOR_HOST=install.btcpayserver.org
 TELEGRAM_TOKEN=...
@@ -23,8 +21,6 @@ FIREFLY_HOST=firefly.btcpayserver.org
 ```
 Where: 
 * `SLACK_TOKEN` is your secret slack token
-* `SLACK_HOST` is the slack invite domain name
-* `SLACK_URL` is the slack website of your community
 * `MATTERMOST_HOST` is the mattermost domain name
 * `BOT_NICKNAME` is the name of the bot on mattermost
 * `BOT_PASS` is the pass of the bot on mattermost
@@ -34,7 +30,7 @@ Where:
 * `FIREFLY_HOST` is the our firefly domain name
 
 
-This assume that `SLACK_HOST`, `MATTERMOST_HOST`, and `CONFIGURATOR_HOST` are pointing to your server.
+This assume that `MATTERMOST_HOST`, and `CONFIGURATOR_HOST` are pointing to your server.
 Then you can run:
 
 ```bash
