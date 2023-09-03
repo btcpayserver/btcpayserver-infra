@@ -14,9 +14,6 @@
 
 [telegram.btcpay]
 	Token="{TELEGRAM_TOKEN}"
-	
-[gitter.nbitcoin]
-	Token="{GITTER_TOKEN}"
 
 [general]
 RemoteNickFormat="[{PROTOCOL} - {NICK}]"
@@ -24,10 +21,6 @@ RemoteNickFormat="[{PROTOCOL} - {NICK}]"
 [[gateway]]
     name = "nbitcoin"
     enable=true
-
-    [[gateway.inout]]
-    account = "gitter.nbitcoin"
-    channel="MetacoSA/NBitcoin"
 
     [[gateway.inout]]
     account ="slack.forkbitpay"
