@@ -25,7 +25,6 @@ Where:
 * `BOT_NICKNAME` is the name of the bot on mattermost
 * `BOT_PASS` is the pass of the bot on mattermost
 * `TELEGRAM_TOKEN` is the telegram token
-* `GITTER_TOKEN` is the gitter token
 * `CONFIGURATOR_HOST` is the configurator domain name
 * `FIREFLY_HOST` is the our firefly domain name
 
