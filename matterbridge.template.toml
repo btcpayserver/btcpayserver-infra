@@ -92,16 +92,3 @@ RemoteNickFormat="[{PROTOCOL} - {NICK}]"
     [[gateway.inout]]
     account ="mattermost.btcpay"
     channel = "lightning"
-
-[[gateway]]
-    name = "offtopic"
-    enable=true
-
-    [[gateway.inout]]
-    account ="slack.forkbitpay"
-    channel = "random"    
-	
-    [[gateway.inout]]
-    account ="mattermost.btcpay"
-    channel = "off-topic"
-
