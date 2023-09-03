@@ -94,18 +94,6 @@ RemoteNickFormat="[{PROTOCOL} - {NICK}]"
     channel = "lightning"
 
 [[gateway]]
-    name = "internet-of-shit"
-    enable=true
-
-    [[gateway.inout]]
-    account ="slack.forkbitpay"
-    channel = "internetofshit"    
-	
-    [[gateway.inout]]
-    account ="mattermost.btcpay"
-    channel = "raspberry-pi"
-
-[[gateway]]
     name = "offtopic"
     enable=true
 
