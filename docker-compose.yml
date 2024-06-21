@@ -134,7 +134,7 @@ services:
 
   plugin-builder:
     restart: unless-stopped
-    image: btcpayserver/btcpayserver-plugin-builder:v1.0.23
+    image: btcpayserver/btcpayserver-plugin-builder:v1.0.24
     environment:
       PB_POSTGRES: Application Name=plugin-builder;User ID=postgres;Host=postgres;Port=5432;Database=pluginbuilder
       PB_STORAGE_CONNECTION_STRING: ${PB_STORAGE_CONNECTION_STRING}
