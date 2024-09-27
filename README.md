@@ -3,10 +3,11 @@ The docker compose running several services for the BTCPay Server community
 
 It contains the following services for the community:
 
-* Slack invite.  ([slack.btcpayserver.org](https://slack.btcpayserver.org))
-* Mattermost server ([chat.btcpayserver.org](https://chat.btcpayserver.org))
+* Slack invite - ([slack.btcpayserver.org](https://slack.btcpayserver.org))
+* Mattermost server - ([chat.btcpayserver.org](https://chat.btcpayserver.org))
 * Bot which bridge IRC, MatterMost, Slack and Telegram.
-* BTCPay Server Web Installer/Configurator.  ([install.btcpayserver.org](https://install.btcpayserver.org))
+* BTCPay Server Web Installer/Configurator - ([install.btcpayserver.org](https://install.btcpayserver.org))
+* Plugin Builder - ([plugin-builder.btcpayserver.org](https://plugin-builder.btcpayserver.org))
 
 ## How to use
 
@@ -28,8 +29,8 @@ Where:
 * `CONFIGURATOR_HOST` is the configurator domain name
 * `FIREFLY_HOST` is the our firefly domain name
 
-
 This assume that `MATTERMOST_HOST`, and `CONFIGURATOR_HOST` are pointing to your server.
+
 Then you can run:
 
 ```bash
@@ -37,7 +38,19 @@ Then you can run:
 docker-compose up -d
 ```
 
-## Aditional settings
+## Updating Services
+
+If you need to update the version of a service (e.g., Plugin Builder), follow these steps:
+
+1. Update the `docker-compose.yml` file in the repository and push commit.
+2. On the server, run the following commands:
+
+```bash
+git pull
+docker-compose up -d
+```
+
+## Additional settings
 
 We advise you to change `PluginSettings/EnableUploads` to true manually (`/var/lib/docker/volumes/root_mm-config/_data/config.json`).
 
