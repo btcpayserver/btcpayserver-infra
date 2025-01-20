@@ -47,7 +47,7 @@ services:
       - nginx-gen
       - mattermost_app
   mattermost_db:
-    image: btcpayserver/postgres:13.4-1
+    image: btcpayserver/postgres:13.18
     volumes:
       - mm-dbdata:/var/lib/postgresql/data
       - /etc/localtime:/etc/localtime:ro
@@ -61,7 +61,7 @@ services:
       - 5432
   mattermost_app:
     restart: unless-stopped
-    image: mattermost/mattermost-team-edition:release-9.1
+    image: mattermost/mattermost-team-edition:10.4.1
     volumes:
       - mm-config:/mattermost/config:rw
       - mm-data:/mattermost/data:rw
