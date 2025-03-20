@@ -35,8 +35,10 @@ Then you can run:
 
 ```bash
 ./update-mattermost.sh
-docker-compose up -d
+docker compose up -d
 ```
+
+Please note that previously used `docker-compose` will now likely fail in setup. So ensure you are consistenly using `docker compose` without -.
 
 ## Updating Services
 
