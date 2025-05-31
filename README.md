@@ -49,8 +49,10 @@ If you need to update the version of a service (e.g., Plugin Builder), follow th
 
 ```bash
 git pull
-docker-compose up -d
+docker compose up -d
 ```
+
+On legacy servers, using new `docker compose` instead of `docker-compose`, you may get a warning that volume already exists, but that shouldn't be a problem. We will add a guide on migrating to remove the warning as we further improve the repository.
 
 ## Additional settings
 
