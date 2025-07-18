@@ -3,7 +3,7 @@ version: "3"
 services:
   nginx:
     restart: unless-stopped
-    image: nginx:1.16.0
+    image: nginx:1.25.3-bookworm
     container_name: nginx
     ports:
       - "80:80"
@@ -16,7 +16,7 @@ services:
 
   nginx-gen:
     restart: unless-stopped
-    image: btcpayserver/docker-gen:0.7.8
+    image: btcpayserver/docker-gen:0.10.7
     container_name: nginx-gen
     volumes:
       - "/var/run/docker.sock:/tmp/docker.sock:ro"
@@ -31,7 +31,7 @@ services:
 
   letsencrypt-nginx-proxy-companion:
     restart: unless-stopped
-    image: btcpayserver/letsencrypt-nginx-proxy-companion:1.12.2
+    image: btcpayserver/letsencrypt-nginx-proxy-companion:2.2.9-2
     container_name: letsencrypt-nginx-proxy-companion
     volumes:
       - "/var/run/docker.sock:/var/run/docker.sock:ro"
@@ -39,6 +39,7 @@ services:
       - "nginx_vhost:/etc/nginx/vhost.d"
       - "nginx_html:/usr/share/nginx/html"
       - "nginx_certs:/etc/nginx/certs:rw"
+      - "acme:/etc/acme.sh"
     environment:
       NGINX_DOCKER_GEN_CONTAINER: "nginx-gen"
       NGINX_PROXY_CONTAINER: "nginx"
@@ -161,4 +162,5 @@ volumes:
     firefly_iii_export:
     firefly_iii_upload:
     postgres_datadir: 
-    pluginbuilder_datadir:   
+    pluginbuilder_datadir:
+    acme:
