@@ -133,22 +133,6 @@ services:
     volumes:
       - "postgres_datadir:/var/lib/postgresql/data"
 
-  plugin-builder:
-    restart: unless-stopped
-    image: btcpayserver/btcpayserver-plugin-builder:v1.0.37
-    environment:
-      PB_POSTGRES: Application Name=plugin-builder;User ID=postgres;Host=postgres;Port=5432;Database=pluginbuilder
-      PB_STORAGE_CONNECTION_STRING: ${PB_STORAGE_CONNECTION_STRING}
-      VIRTUAL_HOST_NAME: pluginbuilder
-      VIRTUAL_HOST: ${PB_HOST}
-      VIRTUAL_PORT: 8080
-      LETSENCRYPT_HOST: ${PB_HOST}
-    expose:
-      - "8080"
-    volumes:
-      - "pluginbuilder_datadir:/datadir"
-      - /var/run/docker.sock:/var/run/docker.sock
-
 volumes:
     nginx_conf:
     nginx_vhost:
@@ -161,6 +145,5 @@ volumes:
     mm-plugins:
     firefly_iii_export:
     firefly_iii_upload:
-    postgres_datadir: 
-    pluginbuilder_datadir:
+    postgres_datadir:
     acme:
