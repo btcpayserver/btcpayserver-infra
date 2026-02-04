@@ -48,9 +48,9 @@ services:
       - nginx-gen
       - mattermost_app
   mattermost_db:
-    image: btcpayserver/postgres:13.18
+    image: btcpayserver/postgres:18.1
     volumes:
-      - mm-dbdata:/var/lib/postgresql/data
+      - mm-dbdata:/var/lib/postgresql
       - /etc/localtime:/etc/localtime:ro
     environment:
       - POSTGRES_HOST_AUTH_METHOD=trust
@@ -126,12 +126,12 @@ services:
 
   postgres:
     restart: unless-stopped
-    image: btcpayserver/postgres:13.7
+    image: btcpayserver/postgres:18.1
     command: [ "-c", "random_page_cost=1.0", "-c", "shared_preload_libraries=pg_stat_statements" ]
     environment:
       POSTGRES_HOST_AUTH_METHOD: trust
     volumes:
-      - "postgres_datadir:/var/lib/postgresql/data"
+      - "postgres_datadir:/var/lib/postgresql"
 
 volumes:
     nginx_conf:
