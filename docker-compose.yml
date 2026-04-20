@@ -90,7 +90,7 @@ services:
       - ./matterbridge.toml:/matterbridge.toml
   configurator:
     restart: unless-stopped
-    image: btcpayserver/btcpayserver-configurator:0.0.22
+    image: ghcr.io/btcpayserver/btcpayserver-configurator:0.0.23
     environment:
       LETSENCRYPT_HOST: ${CONFIGURATOR_HOST}
       LETSENCRYPT_EMAIL: ${LETSENCRYPT_EMAIL:-<no value>}
