@@ -83,46 +83,6 @@ services:
       EDITION: "team"
     depends_on:
       - mattermost_db
-  mattermost_bridge:
-    restart: unless-stopped
-    image: 42wim/matterbridge:1.26.0
-    volumes:
-      - ./matterbridge.toml:/matterbridge.toml
-  configurator:
-    restart: unless-stopped
-    image: ghcr.io/btcpayserver/btcpayserver-configurator:0.0.28
-    environment:
-      LETSENCRYPT_HOST: ${CONFIGURATOR_HOST}
-      LETSENCRYPT_EMAIL: ${LETSENCRYPT_EMAIL:-<no value>}
-      VIRTUAL_HOST: ${CONFIGURATOR_HOST}
-    expose:
-      - "80"
-
-  fireflyiii:
-    image: fireflyiii/core:version-5.7.15
-    environment:
-      - APP_ENV=local
-      - APP_KEY=MustBe32DropDbAndChangeItIfUWant
-      - APP_URL=https://${FIREFLY_HOST}
-      - TRUSTED_PROXIES=**
-      - DB_CONNECTION=pgsql
-      - DB_HOST=postgres
-      - DB_PORT=5432
-      # Need to manually create fireflyiii database since fireflyiii doesn't create it automatically
-      - DB_DATABASE=fireflyiii
-      - DB_USERNAME=postgres
-      - DB_PASSWORD=
-      - VIRTUAL_HOST_NAME=fireflyiii
-      - VIRTUAL_HOST=${FIREFLY_HOST}
-      - VIRTUAL_PORT=8080
-      - LETSENCRYPT_HOST=${FIREFLY_HOST}
-    expose:
-      - 8080
-    volumes:
-      - firefly_iii_export:/var/www/html/storage/export
-      - firefly_iii_upload:/var/www/html/storage/upload
-    depends_on:
-      - postgres
 
   postgres:
     restart: unless-stopped
@@ -143,7 +103,5 @@ volumes:
     mm-data:
     mm-logs:
     mm-plugins:
-    firefly_iii_export:
-    firefly_iii_upload:
     postgres_datadir:
     acme:
