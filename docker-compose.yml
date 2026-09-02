@@ -48,7 +48,7 @@ services:
       - nginx-gen
       - mattermost_app
   mattermost_db:
-    image: btcpayserver/postgres:18.1
+    image: btcpayserver/postgres:18.6
     volumes:
       - mm-dbdata:/var/lib/postgresql
       - /etc/localtime:/etc/localtime:ro
@@ -62,12 +62,13 @@ services:
       - 5432
   mattermost_app:
     restart: unless-stopped
-    image: mattermost/mattermost-team-edition:10.4.1
+    image: mattermost/mattermost-team-edition:10.5.14
     volumes:
       - mm-config:/mattermost/config:rw
       - mm-data:/mattermost/data:rw
       - mm-logs:/mattermost/logs:rw
       - mm-plugins:/mattermost/plugins:rw
+      - mm-client-plugins:/mattermost/client/plugins:rw
       - /etc/localtime:/etc/localtime:ro
     environment:
       # use service's hostname
@@ -86,7 +87,7 @@ services:
 
   postgres:
     restart: unless-stopped
-    image: btcpayserver/postgres:18.1
+    image: btcpayserver/postgres:18.6
     command: [ "-c", "random_page_cost=1.0", "-c", "shared_preload_libraries=pg_stat_statements" ]
     environment:
       POSTGRES_HOST_AUTH_METHOD: trust
@@ -103,5 +104,6 @@ volumes:
     mm-data:
     mm-logs:
     mm-plugins:
+    mm-client-plugins:
     postgres_datadir:
     acme:
